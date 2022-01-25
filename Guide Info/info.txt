@@ -1,0 +1,2 @@
+1)  If we change any app.js or routes.js or view.js  or view file then do compile must.
+    Compile command  : npm run watch 
