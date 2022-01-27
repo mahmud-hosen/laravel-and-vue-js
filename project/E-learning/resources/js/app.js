@@ -2,6 +2,10 @@
 require('./bootstrap');
 window.Vue = require('vue');
 
+//Support for google chart 
+import VueGoogleCharts from 'vue-google-charts'
+Vue.use(VueGoogleCharts)
+
 //Vue Router Support
 import VueRouter from 'vue-router'
 Vue.use(VueRouter)
@@ -55,6 +59,9 @@ window.Toast = Toast; // It is use for globally
 //We can use component any position but must use into app div id. Like It use admin_header.Can't use app id in body tag .We can use into div id
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('admin-master', require('./components/admin/adminmaster.vue').default);
+Vue.component('category-content', require('./components/admin/dashboard/category_wise_content.vue').default);
+Vue.component('subcategory-content', require('./components/admin/dashboard/category_wise_subcategory.vue').default);
+
 
 
 const app = new Vue({

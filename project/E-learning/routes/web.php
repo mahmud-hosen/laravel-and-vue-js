@@ -43,6 +43,28 @@ Route::get('/subCategoryById/{id}', 'SubCategoryController@edit')->name('subCate
 Route::post('/subCategoryUpdate/{id}', 'SubCategoryController@update')->name('subCategory.update');
 Route::get('/subCategoryDelete/{id}', 'SubCategoryController@destroy')->name('subCategory.delete');
 
+//-----------------------------  Content Route ----------------------------
+Route::get('/getSubcategoryByCategoryId/{id}', 'ContentController@getSubcategoryByCategoryId')->name('content.getSubcategoryByCategoryId');
+Route::post('/contentSave', 'ContentController@store')->name('content.store');
+Route::get('/contentList', 'ContentController@index')->name('content.index');
+Route::get('/contentDelete/{id}', 'ContentController@destroy')->name('content.destroy');
+Route::get('/contentById/{id}', 'ContentController@edit')->name('content.edit');
+Route::post('/contentUpdate/{id}', 'ContentController@update')->name('content.update');
+
+// -------------------------------- Dashboard Charts -------------------------
+Route::get('/categoryWiseContent', 'ContentController@categoryWiseContent')->name('content.categoryWiseContent');
+Route::get('/categoryWiseSubCategory', 'ContentController@categoryWiseSubCategory')->name('content.categoryWiseSubCategory');
+
+
+
+//---------------------------------User role permission route ---------------
+    Route::resource('roles', RoleController::class);
+    Route::resource('users', UserController::class);
+    Route::resource('products', ProductController::class);
+
+
+
+
 
 
 

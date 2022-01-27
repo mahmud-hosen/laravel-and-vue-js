@@ -13,7 +13,7 @@
                 </div>
                 <!-- /.card-header -->
                 <!-- form start -->
-                <form role="form" @submit.prevent="subCategorySave">
+                <form role="form" @submit.prevent="contentSave" enctype="multipart/form-data">
                   <div class="card-body">
                     <div class="row">
                         <div class="col-md-8 right-border">
@@ -21,26 +21,27 @@
                                 <div class="col-md-6">
                                       <div class="form-group">
                                       <label for="exampleInputEmail1">Select Category</label>
-                                      <select type="text" v-model="form.cat_id" class="form-control" id="exampleInputEmail1"
-                                        :class="{'is-invalid' :form.errors.has('cat_id')}" name="cat_id" >
+                                      <select type="text" v-model="category_id" class="form-control" 
+                                       id="exampleInputEmail1" name="category_id" @change="getSubCategory"  >
                                         <option :value="category.id"  v-for="category in getCategoryList" :key="category.id">
                                           {{ category.cat_name }}
                                         </option>
                                       </select>
-                                      <has-error :form="form" field="cat_id"> </has-error>
+                                      <div class="containError" v-if="errors && errors.category_id">{{ errors.category_id[0] }}</div>
                                      </div>
                                 </div>
                                
                                 <div class="col-md-6">
                                       <div class="form-group">
-                                      <label for="exampleInputEmail1">Select Category</label>
-                                      <select type="text" v-model="form.cat_id" class="form-control" id="exampleInputEmail1"
-                                        :class="{'is-invalid' :form.errors.has('cat_id')}" name="cat_id" >
-                                        <option :value="category.id"  v-for="category in getCategoryList" :key="category.id">
-                                          {{ category.cat_name }}
+                                      <label for="exampleInputEmail1">Select Sub Category</label>
+                                      <select type="text" v-model="subCategory_id" class="form-control" id="exampleInputEmail1"
+                                         name="subCategory_id" >
+                                        <option :value="sub_cat.id"  v-for="sub_cat in subCategory" :key="sub_cat.id">
+                                          {{ sub_cat.sub_cat_name }}
                                         </option>
                                       </select>
-                                      <has-error :form="form" field="cat_id"> </has-error>
+                                      <div class="containError" v-if="errors && errors.subCategory_id">{{ errors.subCategory_id[0] }}</div>
+                                      
                                     </div>
                                 </div>
                                
@@ -49,52 +50,48 @@
                         
                         
                         <div class="col-md-4">
-                              <div class="form-group">
-                                  <label for="exampleInputEmail1">Select Category</label>
-                                  <select type="text" v-model="form.cat_id" class="form-control" id="exampleInputEmail1"
-                                    :class="{'is-invalid' :form.errors.has('cat_id')}" name="cat_id" >
-                                    <option :value="category.id"  v-for="category in getCategoryList" :key="category.id">
-                                      {{ category.cat_name }}
-                                    </option>
-                                  </select>
-                                  <has-error :form="form" field="cat_id"> </has-error>
-                              </div>
-                              
+                          <div class="form-group">
+                            <label for="exampleInputEmail1">Upload File</label>
+                            <input type="file" name="file"  class="form-control" id="inputFileUpload" @change="getFile" />
+                            <div v-if="errors && errors.file">{{ errors.file[0] }}</div>
+                            
+                          </div>   
                         </div>
                     </div>
+                  
                     <div class="row">
                       <div class="col-md-8">
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Sub Category Name</label>
-                            <input type="text" name="sub_cat_name" v-model="form.sub_cat_name" class="form-control" id="exampleInputEmail1" placeholder="Enter  Name" />
-                            <div v-if="form.errors.has('sub_cat_name')" v-html="form.errors.get('sub_cat_name')"></div>
+                            <label for="exampleInputEmail1">Content Title</label>
+                            <input type="text" name="title" v-model="title" class="form-control" id="exampleInputEmail1" placeholder="Enter  Title" />
+                            <div class="containError" v-if="errors && errors.title">{{ errors.title[0] }}</div>
+                            
+                                                      
                         </div>
                       </div>
 
                        <div class="col-md-4">
                               <div class="form-group">
-                                  <label for="exampleInputEmail1">Sub Category Name</label>
-                                  <input type="text" name="sub_cat_name" v-model="form.sub_cat_name" class="form-control" id="exampleInputEmail1" placeholder="Enter  Name" />
-                                  <div v-if="form.errors.has('sub_cat_name')" v-html="form.errors.get('sub_cat_name')"></div>
+                                  <label for="exampleInputEmail1">Video Url</label>
+                                  <input type="text" name="video_url" v-model="video_url" class="form-control" id="exampleInputEmail1" placeholder="Enter Url" />
+                                  <div v-if="errors && errors.video_url">{{ errors.video_url[0] }}</div>
+
                               </div>
                       </div>
                     </div>
                     <div class="row">
-                      <div class="col-md-8 ">
+                      <div class="col-md-12 ">
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Sub Category Name</label>
-                            <input type="text" name="sub_cat_name" v-model="form.sub_cat_name" class="form-control" id="exampleInputEmail1" placeholder="Enter  Name" />
-                            <div v-if="form.errors.has('sub_cat_name')" v-html="form.errors.get('sub_cat_name')"></div>
+                            <label for="exampleInputEmail1">Description</label>
+                               <textarea v-model="description" name="description" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+
+                               <div v-if="errors && errors.description">{{ errors.description[0] }}</div>
+                            
                         </div>
                       </div>
 
-                       <div class="col-md-4">
-                              <div class="form-group">
-                                  <label for="exampleInputEmail1">Sub Category Name</label>
-                                  <input type="text" name="sub_cat_name" v-model="form.sub_cat_name" class="form-control" id="exampleInputEmail1" placeholder="Enter  Name" />
-                                  <div v-if="form.errors.has('sub_cat_name')" v-html="form.errors.get('sub_cat_name')"></div>
-                              </div>
-                      </div>
+
+                   
                     </div>
                   </div>
                   <!-- /.card-body -->
@@ -138,27 +135,64 @@ export default {
 
   data() {
     return {
-      form: new Form({
-        sub_cat_name: '',
-        cat_id: '',
 
-        
-      }),
-    };
+      subCategory:[],
+
+      category_id:'',
+      subCategory_id:'',
+      file:'',
+      title:'',
+      video_url:'',
+      description:'',
+      errors:{},
+
+    
+    }
   },
 
   methods: {
-    subCategorySave() {
-      this.form.post('/subCategorySave')
+     getSubCategory(){
+      axios.get('/getSubcategoryByCategoryId/'+this.category_id).then((response)=>{
+          this.subCategory = response.data.subCategoryList;
+        })
+    },
+    getFile(e)
+    {
+      this.file = e.target.files[0];
+      if(this.file.size > 2097152){
+          Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'File is larger than 2MB!',
+          })
+
+      }
+
+    },
+   
+
+    contentSave() {
+
+      let form = new FormData;
+      form.append('file',this.file);
+      form.append('category_id',this.category_id);
+      form.append('subCategory_id',this.subCategory_id);
+      form.append('title',this.title);
+      form.append('video_url',this.video_url);
+      form.append('description',this.description);
+
+
+      axios.post('/contentSave',form)
         .then((response) => {
-          this.$router.push('/subCategory');
+          this.$router.push('/content');
           Toast.fire({
             icon: 'success',
-            title: 'Sub Category added successfully',
+            title: 'Content added successfully',
           });
           console.log(response);
-        })
-        .catch(() => {});
+        }).catch(error => {
+          this.errors = error.response.data.errors;
+        });
       // ...
     },
     goBack() {
@@ -169,5 +203,8 @@ export default {
 </script>
 
 <style>
+.containError{
+  color:red;
+}
 
 </style>

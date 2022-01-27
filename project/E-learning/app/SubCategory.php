@@ -13,9 +13,19 @@ class SubCategory extends Model
         3rd parametre SubCategory table id primary_key or local_key is  id
 
     */
-    
+    // Relation with Category & SubCategory  start
     public function categories()
     {
         return $this->belongsTo('App\Category','cat_id','id');
     }
+    // Relation with Category & SubCategory  end
+
+
+    // Relation with Sub Category &  Content  start
+    public function contents()
+    {
+        return $this->hasMany('App\Content','subCategory_id','id');
+    }
+    // Relation with Sub Category & Content  end
+
 }

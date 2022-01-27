@@ -24,8 +24,11 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
+        "@ckeditor/ckeditor5-build-classic": "^31.1.0",
+        "@ckeditor/ckeditor5-vue": "^2.0.1",
         "sweetalert2": "^11.3.5",
         "vform": "^2.1.2",
+        "vue-google-charts": "^0.3.3",
         "vue-router": "^3.5.3",
         "vuex": "^3.6.2"
     }

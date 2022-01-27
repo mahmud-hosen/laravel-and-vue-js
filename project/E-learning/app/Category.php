@@ -13,8 +13,19 @@ class Category extends Model
         3rd parametre primary_key or localK_key is  id
 
     */
+    // Relation with Category & SubCategory  start
     public function subCategories()
     {
         return $this->hasMany('App\SubCategory','cat_id','id');
     }
+    // Relation with Category & SubCategory  end
+
+
+     // Relation with Category &  Content  start
+    public function contents()
+    {
+        return $this->hasMany('App\Content','category_id','id');
+    }
+    // Relation with Category & Content  end
+
 }

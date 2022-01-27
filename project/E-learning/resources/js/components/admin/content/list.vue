@@ -6,14 +6,12 @@
         <!--/. container-fluid -->
         <div class="container-fluid">
           <div class="row justify-content-center">
-            <div class="col-md-7 mt-3">
+            <div class="col-md-8 mt-3">
               <div class="card">
                 <div class="card-header">
                   <h3 class="card-title">Content List</h3>
                   <div class="text-right">
-                    <router-link
-                      to="/addContent"
-                      class="btn btn-primary btn-sm"
+                    <router-link to="/addContent" class="btn btn-primary btn-sm"
                       >Add</router-link
                     >
                   </div>
@@ -26,28 +24,30 @@
                         <th style="width: 10px">#</th>
                         <th>Category Name</th>
                         <th>Sub Category Name</th>
+                        <th>Content Title</th>
 
                         <th>Action</th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr
-                        v-for="(subCategoryList, index) in getSubCategoryList"
-                        :key="subCategoryList.id"
+                        v-for="(contentList, index) in getContentList"
+                        :key="contentList.id"
                       >
                         <td>{{ index + 1 }}</td>
-                        <td>{{ subCategoryList.categories.cat_name }}</td>
-                        <td>{{ subCategoryList.sub_cat_name }}</td>
+                        <td>{{ contentList.categories.cat_name }}</td>
+                        <td>{{ contentList.sub_categories.sub_cat_name }}</td>
+                        <td>{{ contentList.title }}</td>
 
                         <td>
                           <div class="">
                             <router-link
-                              :to="`/editSubCategory/${subCategoryList.id}`"
+                              :to="`/editContent/${contentList.id}`"
                               class="btn btn-info btn-xs"
                               ><i class="fas fa-edit"></i
                             ></router-link>
                             <a
-                              @click.prevent="subCategoryDelete(subCategoryList.id)"
+                              @click.prevent="contentDelete(contentList.id)"
                               class="btn btn-info btn-xs"
                               ><i class="fas fa-trash"></i
                             ></a>
@@ -74,23 +74,23 @@ export default {
 
   //  Step: 10
   mounted() {
-    this.$store.dispatch("getSubCategoryList");
+    this.$store.dispatch("getContentList");
   },
 
   //  Step: 4
   computed: {
-    getSubCategoryList() {
-      return this.$store.getters.subCategoryList;
+    getContentList() {
+      return this.$store.getters.contentList;
     },
   },
 
   methods: {
-    subCategoryDelete(id) {
-      axios.get("/subCategoryDelete/" + id).then((response) => {
-        this.$store.dispatch("getSubCategoryList");
+    contentDelete(id) {
+      axios.get("/contentDelete/" + id).then((response) => {
+        this.$store.dispatch("getContentList");
         Toast.fire({
           icon: "success",
-          title: "Category Deleted successfully",
+          title: "Content Deleted successfully",
         });
       });
     },
