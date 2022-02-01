@@ -11,9 +11,11 @@
                 <div class="card-header">
                   <h3 class="card-title">Category List</h3>
                   <div class="text-right">
-                    <router-link to="/addCategory"  class="btn btn-primary btn-sm" >Add</router-link>
-                    
-                    
+                    <router-link
+                      to="/addCategory"
+                      class="btn btn-primary btn-sm"
+                      >Add</router-link
+                    >
                   </div>
                 </div>
                 <!-- /.card-header -->
@@ -27,16 +29,24 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr v-for="(categoryList, index) in getCategoryList" :key="categoryList.id" >
+                      <tr
+                        v-for="(categoryList, index) in getCategoryList"
+                        :key="categoryList.id"
+                      >
                         <td>{{ index + 1 }}</td>
                         <td>{{ categoryList.cat_name }}</td>
                         <td>
                           <div class="">
-                           
-                            <router-link :to="`/editCategory/${categoryList.id}`" class="btn btn-info btn-xs" ><i class="fas fa-edit"></i></router-link>
-                            <a @click.prevent="categoryDelete(categoryList.id)" class="btn btn-info btn-xs" ><i class="fas fa-trash"></i></a>
-                            
-            
+                            <router-link
+                              :to="`/editCategory/${categoryList.id}`"
+                              class="btn btn-info btn-xs"
+                              ><i class="fas fa-edit"></i
+                            ></router-link>
+                            <a
+                              @click.prevent="categoryDelete(categoryList.id)"
+                              class="btn btn-info btn-xs"
+                              ><i class="fas fa-trash"></i
+                            ></a>
                           </div>
                         </td>
                       </tr>
@@ -62,26 +72,25 @@ export default {
   mounted() {
     this.$store.dispatch("getCategoryList");
   },
-   
-   //  Step: 4
+
+  //  Step: 4
   computed: {
     getCategoryList() {
       return this.$store.getters.categoryList;
     },
   },
 
-  methods:{
-    categoryDelete(id){
-          axios.get('/categoryDelete/'+id).then((response)=>{
-                this.$store.dispatch("getCategoryList");
-                  Toast.fire({
-                  icon: 'success',
-                  title: 'Category Deleted successfully'
-          })
-        })
-    }
-
-  }
+  methods: {
+    categoryDelete(id) {
+      axios.get("/categoryDelete/" + id).then((response) => {
+        this.$store.dispatch("getCategoryList");
+        Toast.fire({
+          icon: "success",
+          title: "Category Deleted successfully",
+        });
+      });
+    },
+  },
 };
 </script>
 

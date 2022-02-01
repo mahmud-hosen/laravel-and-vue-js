@@ -14,7 +14,7 @@ Vue.use(VueRouter)
 import { routes } from './routes.js';
 const router = new VueRouter({
     routes,    // short for `routes: routes`
-    mode:'history'
+    mode: 'history'
 })
 
 
@@ -69,5 +69,5 @@ const app = new Vue({
     // All const declare here 
     router,
     store
-    
+
 });

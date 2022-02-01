@@ -2004,12 +2004,26 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'Save',
+  name: "Save",
   data: function data() {
     return {
       form: new Form({
-        cat_name: ''
+        cat_name: ""
       })
     };
   },
@@ -2017,18 +2031,18 @@ __webpack_require__.r(__webpack_exports__);
     categorySave: function categorySave() {
       var _this = this;
 
-      this.form.post('/categorySave').then(function (response) {
-        _this.$router.push('/category');
+      this.form.post("/categorySave").then(function (response) {
+        _this.$router.push("/category");
 
         Toast.fire({
-          icon: 'success',
-          title: 'Category added successfully'
+          icon: "success",
+          title: "Category added successfully"
         });
         console.log(response);
       })["catch"](function () {}); // ...
     },
     goBack: function goBack() {
-      this.$router.push('/category');
+      this.$router.push("/category");
     }
   }
 });
@@ -2191,6 +2205,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "List",
   //  Step: 10
@@ -2207,12 +2231,12 @@ __webpack_require__.r(__webpack_exports__);
     categoryDelete: function categoryDelete(id) {
       var _this = this;
 
-      axios.get('/categoryDelete/' + id).then(function (response) {
+      axios.get("/categoryDelete/" + id).then(function (response) {
         _this.$store.dispatch("getCategoryList");
 
         Toast.fire({
-          icon: 'success',
-          title: 'Category Deleted successfully'
+          icon: "success",
+          title: "Category Deleted successfully"
         });
       });
     }
@@ -2408,8 +2432,7 @@ __webpack_require__.r(__webpack_exports__);
         Toast.fire({
           icon: 'success',
           title: 'Content added successfully'
-        });
-        console.log(response);
+        }); // console.log(response);
       })["catch"](function (error) {
         _this2.errors = error.response.data.errors;
       }); // ...
@@ -2859,6 +2882,39 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -43150,8 +43206,8 @@ var render = function () {
     _c("div", { staticClass: "content-wrapper" }, [
       _c("section", { staticClass: "content" }, [
         _c("div", { staticClass: "container-fluid" }, [
-          _c("div", { staticClass: "row justify-content-center " }, [
-            _c("div", { staticClass: "col-md-6  mt-3 " }, [
+          _c("div", { staticClass: "row justify-content-center" }, [
+            _c("div", { staticClass: "col-md-6 mt-3" }, [
               _c("div", { staticClass: "card card-primary" }, [
                 _vm._m(0),
                 _vm._v(" "),
@@ -43223,7 +43279,11 @@ var render = function () {
                           staticClass: "btn btn-primary btn-sm",
                           attrs: { type: "submit" },
                         },
-                        [_vm._v("Submit")]
+                        [
+                          _vm._v(
+                            "\n                    Submit\n                  "
+                          ),
+                        ]
                       ),
                       _vm._v(" "),
                       _c(
@@ -43233,7 +43293,11 @@ var render = function () {
                           attrs: { type: "submit" },
                           on: { click: _vm.goBack },
                         },
-                        [_vm._v("Back")]
+                        [
+                          _vm._v(
+                            "\n                    Back\n                  "
+                          ),
+                        ]
                       ),
                     ]),
                   ]
@@ -43252,7 +43316,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "card-header" }, [
-      _c("h3", { staticClass: "card-title" }, [_vm._v("Add New Category ")]),
+      _c("h3", { staticClass: "card-title" }, [_vm._v("Add New Category")]),
     ])
   },
 ]
@@ -44655,7 +44719,7 @@ var staticRenderFns = [
             ]),
             _vm._v(" "),
             _c("span", { staticClass: "info-box-number" }, [
-              _vm._v("\n                10\n                "),
+              _vm._v("\n                  10\n                  "),
               _c("small", [_vm._v("%")]),
             ]),
           ]),
@@ -44783,7 +44847,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "card-header" }, [
       _c("h5", { staticClass: "card-title" }, [
-        _vm._v("Category wise SubCategory "),
+        _vm._v("Category wise SubCategory"),
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "card-tools" }, [
@@ -63222,7 +63286,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var routes = [{
-  path: '/',
+  path: '/home',
   component: _components_admin_dashboard_index_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
 }, // Start route for category
 {

@@ -182,6 +182,7 @@ export default {
       form.append('description',this.description);
 
 
+
       axios.post('/contentSave',form)
         .then((response) => {
           this.$router.push('/content');
@@ -189,7 +190,7 @@ export default {
             icon: 'success',
             title: 'Content added successfully',
           });
-          console.log(response);
+         // console.log(response);
         }).catch(error => {
           this.errors = error.response.data.errors;
         });

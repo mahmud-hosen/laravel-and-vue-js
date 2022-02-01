@@ -20,9 +20,10 @@ import contentedit from './components/admin/content/edit.vue';
 
 export const routes = [
     {
-        path: '/',
+        path: '/home',
         component: dashboard
     },
+  
 
     // Start route for category
     {   //  Step: 2
