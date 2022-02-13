@@ -16,7 +16,7 @@ export default {
         categoryList(state) {
             return state.category
         },
-       
+
         subCategoryList(state) {
             return state.subCategory
         },
@@ -28,13 +28,13 @@ export default {
 
     //  Step: 5
     actions: {
-       
+
         getCategoryList(context) {
             Axios.get('/CategoryList').then((response) => {
                 context.commit('categoryListItem', response.data.categoryList)
             })
         },
-       
+
         getSubCategoryList(context) {
             Axios.get('/subCategoryList').then((response) => {
                 context.commit('subCategoryList', response.data.subCategoryList)
@@ -55,7 +55,7 @@ export default {
         categoryListItem(state, responseData) {
             return state.category = responseData
         },
-       
+
         subCategoryList(state, responseData) {
             return state.subCategory = responseData
         },

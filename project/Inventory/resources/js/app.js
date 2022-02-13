@@ -12,6 +12,12 @@ Vue.use(VueRouter)
 import Vuex from 'vuex'
 Vue.use(Vuex)
 
+import storeInfo from './store/store.js';
+const store = new Vuex.Store(
+    storeInfo
+
+)
+
 
 // Router.js file Import
 import { routes } from './routes.js';
@@ -36,7 +42,6 @@ const Toast = Swal.mixin({
         toast.addEventListener('mouseleave', Swal.resumeTimer)
     }
 })
-
 window.Toast = Toast; // It is use for globally 
 
 
@@ -47,5 +52,6 @@ Vue.component('admin-master', require('./components/admin/adminmaster.vue').defa
 
 const app = new Vue({
     el: '#app',
-    router
+    router,
+    store
 });

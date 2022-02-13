@@ -4,39 +4,65 @@
       <!-- Main content -->
       <section class="content">
         <div class="row justify-content-center">
-          <div class="col-md-6 mt-5">
+          <div class="col-md-6 mt-2">
             <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title">Category Add</h3>
-                <div class="text-right">
-                  <router-link to="/" class="btn btn-success btn-sm"
-                    >Add</router-link
-                  >
-                </div>
+                <h3 class="card-title mt-1">Category Update</h3>
               </div>
-              <form role="form" @submit.prevent="categorySave">
+              <form
+                role="form"
+                @submit.prevent="categoryUpdate"
+                enctype="multipart/form-data"
+              >
                 <div class="card-body">
                   <div class="form-group">
-                    <label for="inputName">Project Name</label>
-                    <input type="text" id="inputName" class="form-control" />
-                  </div>
-                  <div class="form-group">
-                    <label for="inputDescription">Project Description</label>
-                    <textarea
-                      id="inputDescription"
+                    <label for="inputName">Category Name</label>
+                    <input
+                      type="text"
+                      v-model="cat_name"
+                      id="cat_name"
+                      name="cat_name"
                       class="form-control"
-                      rows="4"
-                    ></textarea>
+                    />
+                    <div class="containError" v-if="errors && errors.cat_name">
+                      {{ errors.cat_name[0] }}
+                    </div>
                   </div>
 
                   <div class="form-group">
-                    <label for="inputProjectLeader">Project Leader</label>
-                    <input
-                      type="file"
-                      id="inputProjectLeader"
+                    <label for="inputDescription">Category Description</label>
+                    <textarea
+                      id="cat_description"
+                      v-model="cat_description"
+                      name="cat_description"
                       class="form-control"
-                    />
+                      rows="4"
+                    ></textarea>
+                    <div
+                      class="containError"
+                      v-if="errors && errors.cat_description"
+                    >
+                      {{ errors.cat_description[0] }}
+                    </div>
                   </div>
+
+                  <div class="form-group">
+                          <label for="inputProjectLeader">Category Image</label>
+                          <input
+                            type="file"
+                            id="cat_img"
+                            name="cat_img"
+                            @change="getImg"
+                            class="form-control"
+                          />
+                          <div class="containError" v-if="errors && errors.cat_img">
+                            {{ errors.cat_img[0] }}
+                          </div>
+                      </div>
+
+                 
+
+                  
                 </div>
 
                 <div class="card-footer text-center">
@@ -66,12 +92,85 @@
 
 <script>
 export default {
+
+    name:'Edit',
+
+   created(){
+        axios.get('/categoryById/'+this.$route.params.categoryId).then((response)=>{
+          this.cat_name = response.data.categoryById.cat_name
+          this.cat_description = response.data.categoryById.cat_description
+          this.cat_img = response.data.categoryById.cat_img
+
+
+        })
+      },
+
+
+  data() {
+    return {
+      cat_name: "",
+      cat_description: "",
+      cat_img: "",
+      errors: {},
+    };
+  },
+
   methods: {
-    categorySave() {},
-    goBack() {},
+    getImg(e) {
+      this.cat_img = e.target.files[0];
+      if (this.cat_img.size > 2097152) {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "File is larger than 2MB!",
+        });
+      } else if (!e.target.files[0].name.match(/.(jpg|jpeg|png|gif)$/i)) {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Image extension is not support. Allow Extension is jpeg, jpg, png and gif",
+        });
+      } else {
+      }
+    },
+
+    categoryUpdate() {
+      let form = new FormData();
+      form.append("cat_name", this.cat_name);
+      form.append("cat_description", this.cat_description);
+      form.append("cat_img", this.cat_img);
+
+         axios.post(`/categoryUpdate/${this.$route.params.categoryId}`,form)
+        .then((response) => {
+          this.$router.push('/categoryList');
+          Toast.fire({
+            icon: 'success',
+            title: 'Category Updated successfully',
+          });
+          console.log(response);
+        }).catch(error => {
+          this.errors = error.response.data.errors;
+        });
+
+  
+   
+   
+   },
+
+    goBack() {
+      this.$router.push("/categoryList");
+      // this.$router.push("/category");
+    },
   },
 };
 </script>
 
 <style>
+.containError {
+  color: red;
+}
+.image{
+  height: 60px;
+  width: 100px;
+}
 </style>
