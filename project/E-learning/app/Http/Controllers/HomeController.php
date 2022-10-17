@@ -26,7 +26,5 @@ class HomeController extends Controller
         return view('layouts.admin_master');
         // return view('dashboard.index');
 
-
-
     }
 }

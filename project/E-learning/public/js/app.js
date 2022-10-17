@@ -2102,19 +2102,33 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'Edit',
+  name: "Edit",
   mounted: function mounted() {
     var _this = this;
 
-    axios.get('/categoryById/' + this.$route.params.categoryId).then(function (response) {
+    axios.get("/categoryById/" + this.$route.params.categoryId).then(function (response) {
       _this.form.fill(response.data.categoryById);
     });
   },
   data: function data() {
     return {
       form: new Form({
-        cat_name: ''
+        cat_name: ""
       })
     };
   },
@@ -2123,17 +2137,17 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       this.form.post("/categoryUpdate/".concat(this.$route.params.categoryId)).then(function (response) {
-        _this2.$router.push('/category');
+        _this2.$router.push("/category");
 
         Toast.fire({
-          icon: 'success',
-          title: 'Category Update successfully'
+          icon: "success",
+          title: "Category Update successfully"
         });
         console.log(response);
       })["catch"](function () {}); // ...
     },
     goBack: function goBack() {
-      this.$router.push('/category');
+      this.$router.push("/category");
     }
   }
 });
@@ -2575,6 +2589,69 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Save",
   mounted: function mounted() {
@@ -2583,10 +2660,10 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     var _this = this;
 
-    axios.get('/subCategoryList').then(function (response) {
+    axios.get("/subCategoryList").then(function (response) {
       _this.subCategory = response.data.subCategoryList;
     });
-    axios.get('/contentById/' + this.$route.params.contentId).then(function (response) {
+    axios.get("/contentById/" + this.$route.params.contentId).then(function (response) {
       _this.category_id = response.data.contentById.category_id;
       _this.subCategory_id = response.data.contentById.subCategory_id;
       _this.title = response.data.contentById.title;
@@ -2605,12 +2682,12 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       subCategory: [],
-      category_id: '',
-      subCategory_id: '',
-      file: '',
-      title: '',
-      video_url: '',
-      description: '',
+      category_id: "",
+      subCategory_id: "",
+      file: "",
+      title: "",
+      video_url: "",
+      description: "",
       errors: {}
     };
   },
@@ -2618,7 +2695,7 @@ __webpack_require__.r(__webpack_exports__);
     getSubCategory: function getSubCategory() {
       var _this2 = this;
 
-      axios.get('/getSubcategoryByCategoryId/' + this.category_id).then(function (response) {
+      axios.get("/getSubcategoryByCategoryId/" + this.category_id).then(function (response) {
         _this2.subCategory = response.data.subCategoryList;
       });
     },
@@ -2627,9 +2704,9 @@ __webpack_require__.r(__webpack_exports__);
 
       if (this.file.size > 2097152) {
         Swal.fire({
-          icon: 'error',
-          title: 'Oops...',
-          text: 'File is larger than 2MB!'
+          icon: "error",
+          title: "Oops...",
+          text: "File is larger than 2MB!"
         });
       }
     },
@@ -2637,18 +2714,18 @@ __webpack_require__.r(__webpack_exports__);
       var _this3 = this;
 
       var form = new FormData();
-      form.append('file', this.file);
-      form.append('category_id', this.category_id);
-      form.append('subCategory_id', this.subCategory_id);
-      form.append('title', this.title);
-      form.append('video_url', this.video_url);
-      form.append('description', this.description);
+      form.append("file", this.file);
+      form.append("category_id", this.category_id);
+      form.append("subCategory_id", this.subCategory_id);
+      form.append("title", this.title);
+      form.append("video_url", this.video_url);
+      form.append("description", this.description);
       axios.post("/contentUpdate/".concat(this.$route.params.contentId), form).then(function (response) {
-        _this3.$router.push('/content');
+        _this3.$router.push("/content");
 
         Toast.fire({
-          icon: 'success',
-          title: 'Content Updated successfully'
+          icon: "success",
+          title: "Content Updated successfully"
         });
         console.log(response);
       })["catch"](function (error) {
@@ -2797,7 +2874,10 @@ __webpack_require__.r(__webpack_exports__);
     return {
       result: [],
       // Array will be automatically processed with visualization.arrayToDataTable function
-      chartData: [['Category', 'Content']],
+      // chartData: [
+      //   ['Category', 'Content'],
+      // ],
+      chartData: [['Year', 'Sales', 'Expenses', 'Profit'], ['2014', 1000, 400, 200], ['2015', 1170, 460, 250], ['2016', 660, 1120, 300], ['2017', 1030, 540, 350]],
       chartOptions: {
         chart: {
           title: 'Company Performance',
@@ -7873,7 +7953,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "\n.containError{\r\n  color:red;\n}\r\n\r\n", ""]);
+exports.push([module.i, "\n.containError {\r\n  color: red;\n}\r\n", ""]);
 
 // exports
 
@@ -43345,8 +43425,8 @@ var render = function () {
     _c("div", { staticClass: "content-wrapper" }, [
       _c("section", { staticClass: "content" }, [
         _c("div", { staticClass: "container-fluid" }, [
-          _c("div", { staticClass: "row justify-content-center " }, [
-            _c("div", { staticClass: "col-md-6  mt-3 " }, [
+          _c("div", { staticClass: "row justify-content-center" }, [
+            _c("div", { staticClass: "col-md-6 mt-3" }, [
               _c("div", { staticClass: "card card-primary" }, [
                 _vm._m(0),
                 _vm._v(" "),
@@ -43418,7 +43498,11 @@ var render = function () {
                           staticClass: "btn btn-primary btn-sm",
                           attrs: { type: "submit" },
                         },
-                        [_vm._v("Submit")]
+                        [
+                          _vm._v(
+                            "\n                    Submit\n                  "
+                          ),
+                        ]
                       ),
                       _vm._v(" "),
                       _c(
@@ -43428,7 +43512,11 @@ var render = function () {
                           attrs: { type: "submit" },
                           on: { click: _vm.goBack },
                         },
-                        [_vm._v("Back")]
+                        [
+                          _vm._v(
+                            "\n                    Back\n                  "
+                          ),
+                        ]
                       ),
                     ]),
                   ]
@@ -43447,7 +43535,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "card-header" }, [
-      _c("h3", { staticClass: "card-title" }, [_vm._v("Update Category ")]),
+      _c("h3", { staticClass: "card-title" }, [_vm._v("Update Category")]),
     ])
   },
 ]
@@ -44104,9 +44192,9 @@ var render = function () {
                                         },
                                         [
                                           _vm._v(
-                                            "\n                                        " +
+                                            "\n                                " +
                                               _vm._s(category.cat_name) +
-                                              "\n                                      "
+                                              "\n                              "
                                           ),
                                         ]
                                       )
@@ -44117,7 +44205,11 @@ var render = function () {
                                 _vm._v(" "),
                                 _vm.errors && _vm.errors.category_id
                                   ? _c("div", { staticClass: "containError" }, [
-                                      _vm._v(_vm._s(_vm.errors.category_id[0])),
+                                      _vm._v(
+                                        "\n                              " +
+                                          _vm._s(_vm.errors.category_id[0]) +
+                                          "\n                            "
+                                      ),
                                     ])
                                   : _vm._e(),
                               ]),
@@ -44181,9 +44273,9 @@ var render = function () {
                                       },
                                       [
                                         _vm._v(
-                                          "\n                                        " +
+                                          "\n                                " +
                                             _vm._s(sub_cat.sub_cat_name) +
-                                            "\n                                      "
+                                            "\n                              "
                                         ),
                                       ]
                                     )
@@ -44194,7 +44286,9 @@ var render = function () {
                                 _vm.errors && _vm.errors.subCategory_id
                                   ? _c("div", { staticClass: "containError" }, [
                                       _vm._v(
-                                        _vm._s(_vm.errors.subCategory_id[0])
+                                        "\n                              " +
+                                          _vm._s(_vm.errors.subCategory_id[0]) +
+                                          "\n                            "
                                       ),
                                     ])
                                   : _vm._e(),
@@ -44222,7 +44316,13 @@ var render = function () {
                             }),
                             _vm._v(" "),
                             _vm.errors && _vm.errors.file
-                              ? _c("div", [_vm._v(_vm._s(_vm.errors.file[0]))])
+                              ? _c("div", [
+                                  _vm._v(
+                                    "\n                          " +
+                                      _vm._s(_vm.errors.file[0]) +
+                                      "\n                        "
+                                  ),
+                                ])
                               : _vm._e(),
                           ]),
                         ]),
@@ -44266,7 +44366,11 @@ var render = function () {
                             _vm._v(" "),
                             _vm.errors && _vm.errors.title
                               ? _c("div", { staticClass: "containError" }, [
-                                  _vm._v(_vm._s(_vm.errors.title[0])),
+                                  _vm._v(
+                                    "\n                          " +
+                                      _vm._s(_vm.errors.title[0]) +
+                                      "\n                        "
+                                  ),
                                 ])
                               : _vm._e(),
                           ]),
@@ -44309,7 +44413,11 @@ var render = function () {
                             _vm._v(" "),
                             _vm.errors && _vm.errors.video_url
                               ? _c("div", [
-                                  _vm._v(_vm._s(_vm.errors.video_url[0])),
+                                  _vm._v(
+                                    "\n                          " +
+                                      _vm._s(_vm.errors.video_url[0]) +
+                                      "\n                        "
+                                  ),
                                 ])
                               : _vm._e(),
                           ]),
@@ -44317,7 +44425,7 @@ var render = function () {
                       ]),
                       _vm._v(" "),
                       _c("div", { staticClass: "row" }, [
-                        _c("div", { staticClass: "col-md-12 " }, [
+                        _c("div", { staticClass: "col-md-12" }, [
                           _c("div", { staticClass: "form-group" }, [
                             _c(
                               "label",
@@ -44353,7 +44461,11 @@ var render = function () {
                             _vm._v(" "),
                             _vm.errors && _vm.errors.description
                               ? _c("div", [
-                                  _vm._v(_vm._s(_vm.errors.description[0])),
+                                  _vm._v(
+                                    "\n                          " +
+                                      _vm._s(_vm.errors.description[0]) +
+                                      "\n                        "
+                                  ),
                                 ])
                               : _vm._e(),
                           ]),

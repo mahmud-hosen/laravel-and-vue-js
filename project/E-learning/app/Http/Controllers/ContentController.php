@@ -196,6 +196,7 @@ class ContentController extends Controller
            ->where('contents.deleted_at', Null)
            ->groupBy('contents.subCategory_id')
            ->get();
+        //    dd($categoryWiseSubCategory);
         return response()->json(['categoryWiseSubCategory'=>$categoryWiseSubCategory],200);
 
     }
